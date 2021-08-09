@@ -28,11 +28,14 @@ export default function Home(props) {
                 </section>
                 <section className={"text-4xl font-semibold py-8"}>
                     <h2>Live Anywhere</h2>
-                    {
-                        cardsData?.map(item => (
-                            <MediumCard key={item.img} img={item.img} title={item.title}/>
-                        ))
-                    }
+                    <div className={"flex space-x-3 overflow-scroll scrollbar-hide"}>
+
+                        {
+                            cardsData?.map(item => (
+                                <MediumCard key={item.img} img={item.img} title={item.title}/>
+                            ))
+                        }
+                    </div>
                 </section>
             </main>
         </div>
@@ -43,13 +46,14 @@ const NEAR_BY_DATA_URL = "https://links.papareact.com/pyp";
 const LIVE_ANYWHERE_DATA_URL = "https://links.papareact.com/zp1";
 
 export async function getStaticProps() {
-    const [exploreData, cardsData] = await Promise.all([NEAR_BY_DATA_URL, LIVE_ANYWHERE_DATA_URL].map(async (url) => {
-        const response = await fetch(NEAR_BY_DATA_URL);
+    const promises = [NEAR_BY_DATA_URL, LIVE_ANYWHERE_DATA_URL].map(async (url) => {
+        const response = await fetch(url);
         if (!response.ok) {
             return []
         }
         return response.json();
-    }));
+    })
+    const [exploreData, cardsData] = await Promise.all(promises);
     return {
         props: {
             exploreData,
