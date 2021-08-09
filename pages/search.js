@@ -12,7 +12,6 @@ const formattedDate = (date) => {
 
 function Search(props) {
     const {searchResults} = props;
-    console.log(searchResults)
     const router = useRouter();
     const {location, startDate, endDate, numberOfGuests} = router.query;
     const range = `${formattedDate(startDate)} - ${formattedDate(endDate)}`;
@@ -35,12 +34,14 @@ function Search(props) {
                     </div>
                 </section>
             </main>
-            {
-                searchResults.map((item) => {
-                    const {img, location, title, description, star, price, total, long, lat} = item;
-                    return <InfoCard key={img} img={img} location={location} title={title} description={description} star={star} price={price} total={total} lat={lat} long={long}/>
-                })
-            }
+            <div className={"flex flex-col"}>
+                {
+                    searchResults.map((item) => {
+                        const {img, location, title, description, star, price, total, long, lat} = item;
+                        return <InfoCard  key={img} img={img} location={location} title={title} description={description} star={star} price={price} total={total} lat={lat} long={long}/>
+                    })
+                }
+            </div>
             <Footer/>
         </div>
     );

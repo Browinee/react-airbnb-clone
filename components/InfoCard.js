@@ -6,8 +6,8 @@ function InfoCard(props) {
     const {img, location, title, description, star, price, total, long, lat} = props;
 
     return (
-        <div className={"flex py-7 px-2 cursor-pointer border-b  hover:shadow-lg hover:opacity-80 transition duration-200 ease-out first:border-t first:bg-red-500"}>
-            <div className={"relative w-40 h-24 md:h-52 md:w-80 flex-shrink-0"}>
+        <div className={"flex py-7 px-2 cursor-pointer border-b  first:border-t hover:shadow-lg hover:opacity-80 transition duration-200 ease-out"}>
+            <div className={"relative w-40 h-24 md:h-52 md:w-80 flex-shrink-0 "}>
                 <Image src={img} layout={"fill"} objectFit={"cover"}/>
             </div>
             <div className={"flex flex-col flex-grow pl-5"}>
@@ -19,7 +19,7 @@ function InfoCard(props) {
                 <div className={"border-b w-10 pt-2"}/>
                 <p className={"pt-2 text-sm text-gray-500 flex-grow"}>{description}</p>
                 <div className={"flex justify-between pt-5 items-end"}>
-                    <p className={"flex items-center"}>
+                    <p className={"flex items-center first:border-t"}>
                         <StarIcon className={"h-5 text-red-400"}/>
                         {star}
                     </p>

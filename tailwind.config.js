@@ -7,8 +7,6 @@ module.exports = {
   },
   variants: {
     extend: {
-      border: ['focus-visible', 'first'],
-      backgroundColor: ['first'],
     },
   },
   plugins: [
