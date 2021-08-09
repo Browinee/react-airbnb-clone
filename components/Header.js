@@ -4,8 +4,13 @@ import {GlobeAltIcon, UserIcon, MenuIcon, SearchIcon, UserCircleIcon} from "@her
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import {DateRangePicker} from 'react-date-range';
+import {useRouter} from "next/router";
 
 function Header(props) {
+    const router = useRouter();
+    const goHome = () => {
+        router.push("/");
+    }
     const [search, setSearch] = useState("");
     const searchHandler = (e) => {
         const value = e.target.value;
@@ -33,9 +38,12 @@ function Header(props) {
     const resetHandler = () => {
         setSearch("");
     };
+    const submitHandler = () => {
+       router.push("/search");
+    }
     return (
         <header className="sticky top-0 z-50  bg-white grid grid-cols-3 shadow-md p-5 md:px-10">
-            <div className="relative flex items-center h-10 cursor-pointer my-auto">
+            <div onClick={goHome}className="relative flex items-center h-10 cursor-pointer my-auto">
                 <Image
                     src="https://links.papareact.com/qd3"
                     layout={"fill"}
@@ -73,8 +81,8 @@ function Header(props) {
                         </div>
                         <div className={"flex"}>
                             <button className={"flex-grow text-gray-500"} onClick={resetHandler}>Cancel</button>
-                            <button className={"flex-grow text-red-400"} onClick={() => {}}>Search</button>
-                        </div> 
+                            <button className={"flex-grow text-red-400"} onClick={submitHandler}>Search</button>
+                        </div>
                     </div>
 
                 )
