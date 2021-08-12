@@ -61,7 +61,7 @@ export default Search;
 
 export async function getServerSideProps() {
     let result;
-    const searchResults = await fetch("https://links.papareact.com/is");
+    const searchResults = await fetch("https://links.papareact.com/isz");
     result = !searchResults.ok
         ? []
         : await searchResults.json();
